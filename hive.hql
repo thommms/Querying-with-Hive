@@ -1,12 +1,11 @@
-/* 
-Create a partitioned table using HIVE
-The table must contain the following types of fields:string, MAP, ARRAY, STRUCT 
-*/
+--Create a partitioned table using HIVE
+--The table must contain the following types of fields:string, MAP, ARRAY, STRUCT 
+
 
 --creating a database using hive
 CREATE DATABASE profile_database LOCATION '/user/home/profile_data';
 
-/*create a table to load our data from file personal_data.txt*/
+--create a table to load our data from file personal_data.txt
 CREATE TABLE profile_table(name string, classes array<string>, 
 			mobile_info MAP<string,bigint>,
 			age int,
@@ -64,8 +63,8 @@ SELECT * from profile_partitioned_table where other_info.company='OSU';
 
 --=======================================================================================================================
 --a. A query to manipulate columns using function calls
-/* calling the inbuilt function, upper, to a column in the table. This function converts 
-all letters to upper case. */
+-- calling the inbuilt function, upper, to a column in the table. This function converts 
+--all letters to upper case.
 SELECT upper(name), mobile_info from profile_partitioned_table;
 
 --b. A query to manipulate columns using arithmetric expression
@@ -85,9 +84,7 @@ SELECT avg(age) from profile_partitioned_table where other_info.salary< (SELECT 
 SELECT name, count(*) from profile_partitioned_table group by name;
 
 --=======================================================================================================================
-/*
-Create another table and write a query to do a JOIN
-*/
+--Create another table and write a query to do a JOIN
 --created second table for the join from the second_table.txt file
 CREATE table second_table(name string, hobby string, nationality string)
 						row format delimited fields terminated by '\t'
